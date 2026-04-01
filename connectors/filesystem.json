@@ -1,0 +1,14 @@
+{
+  "id": "filesystem",
+  "name": "Filesystem",
+  "description": "Read, write, and search files on your local filesystem.",
+  "icon": "filesystem.png",
+  "category": "data",
+  "tags": ["files", "read", "write", "search"],
+  "credentials": [],
+  "mcp": {
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-filesystem", "."]
+  }
+}

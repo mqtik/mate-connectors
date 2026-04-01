@@ -1,0 +1,26 @@
+{
+  "id": "anthropic",
+  "name": "Anthropic",
+  "description": "Access Claude models via the Anthropic API.",
+  "icon": "anthropic.png",
+  "category": "ai",
+  "tags": ["claude", "ai"],
+  "credentials": [
+    {
+      "key": "ANTHROPIC_API_KEY",
+      "label": "API Key",
+      "placeholder": "sk-ant-xxxxxxxxxxxx",
+      "helpUrl": "https://console.anthropic.com/settings/keys",
+      "helpText": "Create an API key at console.anthropic.com",
+      "required": true
+    }
+  ],
+  "mcp": {
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@anthropic-ai/claude-code-mcp"],
+    "env": {
+      "ANTHROPIC_API_KEY": "$ANTHROPIC_API_KEY"
+    }
+  }
+}

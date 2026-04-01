@@ -1,0 +1,22 @@
+{
+  "id": "postgres",
+  "name": "Postgres",
+  "description": "Query databases, inspect schema, and manage PostgreSQL data.",
+  "icon": "postgres.png",
+  "category": "data",
+  "tags": ["database", "sql", "query"],
+  "credentials": [
+    {
+      "key": "POSTGRES_CONNECTION_STRING",
+      "label": "Connection String",
+      "placeholder": "postgresql://user:pass@host:5432/dbname",
+      "helpText": "Full PostgreSQL connection URI",
+      "required": true
+    }
+  ],
+  "mcp": {
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-postgres", "$POSTGRES_CONNECTION_STRING"]
+  }
+}

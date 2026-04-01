@@ -1,0 +1,26 @@
+{
+  "id": "github",
+  "name": "GitHub",
+  "description": "Manage repositories, track code changes, and collaborate on team projects.",
+  "icon": "github.png",
+  "category": "dev",
+  "tags": ["git", "repos", "issues", "pull-requests"],
+  "credentials": [
+    {
+      "key": "GITHUB_PERSONAL_ACCESS_TOKEN",
+      "label": "Personal Access Token",
+      "placeholder": "ghp_xxxxxxxxxxxx",
+      "helpUrl": "https://github.com/settings/tokens",
+      "helpText": "Create a fine-grained token with repo, issues, and pull_requests scopes",
+      "required": true
+    }
+  ],
+  "mcp": {
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-github"],
+    "env": {
+      "GITHUB_PERSONAL_ACCESS_TOKEN": "$GITHUB_PERSONAL_ACCESS_TOKEN"
+    }
+  }
+}

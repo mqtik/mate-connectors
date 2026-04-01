@@ -1,0 +1,26 @@
+{
+  "id": "openai",
+  "name": "OpenAI",
+  "description": "Access GPT models, DALL-E, and other OpenAI services.",
+  "icon": "openai.png",
+  "category": "ai",
+  "tags": ["gpt", "dall-e", "ai"],
+  "credentials": [
+    {
+      "key": "OPENAI_API_KEY",
+      "label": "API Key",
+      "placeholder": "sk-xxxxxxxxxxxx",
+      "helpUrl": "https://platform.openai.com/api-keys",
+      "helpText": "Create an API key at platform.openai.com",
+      "required": true
+    }
+  ],
+  "mcp": {
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@mzxrai/mcp-openai"],
+    "env": {
+      "OPENAI_API_KEY": "$OPENAI_API_KEY"
+    }
+  }
+}

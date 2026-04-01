@@ -1,0 +1,2615 @@
+{
+  "version": 4,
+  "connectors": [
+    {
+      "id": "github",
+      "name": "GitHub",
+      "description": "Manage repositories, track code changes, and collaborate on team projects.",
+      "icon": "github.svg",
+      "category": "dev",
+      "tags": ["git", "repos", "issues", "pull-requests"],
+      "credentials": [
+        {
+          "key": "GITHUB_PERSONAL_ACCESS_TOKEN",
+          "label": "Personal Access Token",
+          "placeholder": "ghp_xxxxxxxxxxxx",
+          "helpUrl": "https://github.com/settings/tokens",
+          "helpText": "Create a fine-grained token with repo, issues, and pull_requests scopes",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-github"],
+        "env": {
+          "GITHUB_PERSONAL_ACCESS_TOKEN": "$GITHUB_PERSONAL_ACCESS_TOKEN"
+        }
+      }
+    },
+    {
+      "id": "gitlab",
+      "name": "GitLab",
+      "description": "Manage GitLab projects, merge requests, issues, and CI/CD pipelines.",
+      "icon": "gitlab.svg",
+      "category": "dev",
+      "tags": ["git", "repos", "merge-requests", "ci-cd"],
+      "credentials": [
+        {
+          "key": "GITLAB_PERSONAL_ACCESS_TOKEN",
+          "label": "Personal Access Token",
+          "placeholder": "glpat-xxxxxxxxxxxx",
+          "helpUrl": "https://gitlab.com/-/user_settings/personal_access_tokens",
+          "helpText": "Create a token with api scope",
+          "required": true
+        },
+        {
+          "key": "GITLAB_API_URL",
+          "label": "API URL",
+          "placeholder": "https://gitlab.com/api/v4",
+          "helpText": "GitLab API base URL (defaults to gitlab.com)",
+          "required": false
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-gitlab"],
+        "env": {
+          "GITLAB_PERSONAL_ACCESS_TOKEN": "$GITLAB_PERSONAL_ACCESS_TOKEN",
+          "GITLAB_API_URL": "$GITLAB_API_URL"
+        }
+      }
+    },
+    {
+      "id": "slack",
+      "name": "Slack",
+      "description": "Send messages, read channels, and manage your Slack workspace.",
+      "icon": "slack.svg",
+      "category": "productivity",
+      "tags": ["messages", "channels", "users"],
+      "credentials": [
+        {
+          "key": "SLACK_BOT_TOKEN",
+          "label": "Bot User OAuth Token",
+          "placeholder": "xoxb-xxxxxxxxxxxx",
+          "helpUrl": "https://api.slack.com/apps",
+          "helpText": "Create a Slack app and copy the Bot User OAuth Token",
+          "required": true
+        },
+        {
+          "key": "SLACK_TEAM_ID",
+          "label": "Team ID",
+          "placeholder": "T0123456789",
+          "helpUrl": "https://slack.com/help/articles/221769328",
+          "helpText": "Your Slack workspace Team ID",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-slack"],
+        "env": {
+          "SLACK_BOT_TOKEN": "$SLACK_BOT_TOKEN",
+          "SLACK_TEAM_ID": "$SLACK_TEAM_ID"
+        }
+      }
+    },
+    {
+      "id": "notion",
+      "name": "Notion",
+      "description": "Search, read, and manage Notion pages, databases, and workspaces.",
+      "icon": "notion.svg",
+      "category": "productivity",
+      "tags": ["notes", "docs", "databases", "wiki"],
+      "credentials": [
+        {
+          "key": "NOTION_TOKEN",
+          "label": "Integration Token",
+          "placeholder": "ntn_xxxxxxxxxxxx",
+          "helpUrl": "https://www.notion.so/my-integrations",
+          "helpText": "Create an internal integration and copy the token",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@notionhq/notion-mcp-server"],
+        "env": {
+          "NOTION_TOKEN": "$NOTION_TOKEN"
+        }
+      }
+    },
+    {
+      "id": "linear",
+      "name": "Linear",
+      "description": "Create and manage issues, projects, and cycles in Linear.",
+      "icon": "linear.svg",
+      "category": "productivity",
+      "tags": ["issues", "projects", "sprints", "tracking"],
+      "credentials": [
+        {
+          "key": "LINEAR_API_KEY",
+          "label": "API Key",
+          "placeholder": "lin_api_xxxxxxxxxxxx",
+          "helpUrl": "https://linear.app/settings/api",
+          "helpText": "Create a personal API key in Linear settings",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@mcp-devtools/linear"],
+        "env": {
+          "LINEAR_API_KEY": "$LINEAR_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "filesystem",
+      "name": "Filesystem",
+      "description": "Read, write, and search files on your local filesystem.",
+      "icon": "",
+      "category": "data",
+      "tags": ["files", "read", "write", "search"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-filesystem", "."]
+      }
+    },
+    {
+      "id": "git",
+      "name": "Git",
+      "description": "Read, search, and manipulate local Git repositories.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["git", "repos", "commits", "diff"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-git"]
+      }
+    },
+    {
+      "id": "fetch",
+      "name": "Fetch",
+      "description": "Fetch web pages and convert them to LLM-friendly markdown.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["web", "http", "scrape", "markdown"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-fetch"]
+      }
+    },
+    {
+      "id": "memory",
+      "name": "Memory",
+      "description": "Persistent knowledge graph for remembering entities and relationships across sessions.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["memory", "knowledge-graph", "entities", "persistence"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-memory"]
+      }
+    },
+    {
+      "id": "sequential-thinking",
+      "name": "Sequential Thinking",
+      "description": "Structured reasoning and reflective problem-solving through thought sequences.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["reasoning", "planning", "analysis"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-sequential-thinking"]
+      }
+    },
+    {
+      "id": "time",
+      "name": "Time",
+      "description": "Get current time and convert between timezones.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["time", "timezone", "clock"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-time"]
+      }
+    },
+    {
+      "id": "puppeteer",
+      "name": "Puppeteer",
+      "description": "Automate Chromium browsers — take screenshots, click elements, and run JavaScript.",
+      "icon": "puppeteer.svg",
+      "category": "dev",
+      "tags": ["browser", "automation", "screenshots", "testing"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-puppeteer"]
+      }
+    },
+    {
+      "id": "playwright",
+      "name": "Playwright",
+      "description": "Browser automation with accessibility tree snapshots — navigate, click, fill forms, and screenshot.",
+      "icon": "playwright.svg",
+      "category": "dev",
+      "tags": ["browser", "automation", "testing", "accessibility"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@playwright/mcp"]
+      }
+    },
+    {
+      "id": "context7",
+      "name": "Context7",
+      "description": "Fetch up-to-date, version-specific documentation for any library or framework.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["docs", "documentation", "libraries", "frameworks"],
+      "credentials": [
+        {
+          "key": "CONTEXT7_API_KEY",
+          "label": "API Key",
+          "placeholder": "ctx7_xxxxxxxxxxxx",
+          "helpUrl": "https://context7.com/dashboard",
+          "helpText": "Free API key for higher rate limits (optional)",
+          "required": false
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@upstash/context7-mcp"]
+      }
+    },
+    {
+      "id": "postgres",
+      "name": "Postgres",
+      "description": "Query databases, inspect schema, and manage PostgreSQL data.",
+      "icon": "postgres.svg",
+      "category": "data",
+      "tags": ["database", "sql", "query"],
+      "credentials": [
+        {
+          "key": "POSTGRES_CONNECTION_STRING",
+          "label": "Connection String",
+          "placeholder": "postgresql://user:pass@host:5432/dbname",
+          "helpText": "Full PostgreSQL connection URI",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-postgres", "$POSTGRES_CONNECTION_STRING"]
+      }
+    },
+    {
+      "id": "sqlite",
+      "name": "SQLite",
+      "description": "Query and manage SQLite databases.",
+      "icon": "sqlite.svg",
+      "category": "data",
+      "tags": ["database", "sql", "query"],
+      "credentials": [
+        {
+          "key": "SQLITE_DB_PATH",
+          "label": "Database Path",
+          "placeholder": "/path/to/database.db",
+          "helpText": "Path to your SQLite database file",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-sqlite", "$SQLITE_DB_PATH"]
+      }
+    },
+    {
+      "id": "mongodb",
+      "name": "MongoDB",
+      "description": "Query collections, run aggregations, and manage MongoDB databases.",
+      "icon": "mongodb.svg",
+      "category": "data",
+      "tags": ["database", "nosql", "collections", "aggregation"],
+      "credentials": [
+        {
+          "key": "MDB_MCP_CONNECTION_STRING",
+          "label": "Connection String",
+          "placeholder": "mongodb+srv://user:pass@cluster.mongodb.net/dbname",
+          "helpText": "Full MongoDB connection URI",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "mongodb-mcp-server"],
+        "env": {
+          "MDB_MCP_CONNECTION_STRING": "$MDB_MCP_CONNECTION_STRING"
+        }
+      }
+    },
+    {
+      "id": "supabase",
+      "name": "Supabase",
+      "description": "Manage Supabase projects — query Postgres, auth, storage, and edge functions.",
+      "icon": "supabase.svg",
+      "category": "data",
+      "tags": ["database", "auth", "storage", "postgres"],
+      "credentials": [
+        {
+          "key": "SUPABASE_URL",
+          "label": "Project URL",
+          "placeholder": "https://xxxx.supabase.co",
+          "helpUrl": "https://supabase.com/dashboard/project/_/settings/api",
+          "helpText": "Your Supabase project URL from the API settings page",
+          "required": true
+        },
+        {
+          "key": "SUPABASE_SERVICE_KEY",
+          "label": "Service Role Key",
+          "placeholder": "eyJhbGciOi...",
+          "helpUrl": "https://supabase.com/dashboard/project/_/settings/api",
+          "helpText": "Service role key (not the anon key) from API settings",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "supabase-mcp-server"],
+        "env": {
+          "SUPABASE_URL": "$SUPABASE_URL",
+          "SUPABASE_SERVICE_KEY": "$SUPABASE_SERVICE_KEY"
+        }
+      }
+    },
+    {
+      "id": "qdrant",
+      "name": "Qdrant",
+      "description": "Semantic vector search — store, query, and manage embeddings for RAG and similarity search.",
+      "icon": "",
+      "category": "data",
+      "tags": ["vector", "embeddings", "search", "rag"],
+      "credentials": [
+        {
+          "key": "QDRANT_URL",
+          "label": "Server URL",
+          "placeholder": "http://localhost:6333",
+          "helpText": "URL of your Qdrant instance",
+          "required": true
+        },
+        {
+          "key": "QDRANT_API_KEY",
+          "label": "API Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpText": "API key for Qdrant Cloud (leave empty for local)",
+          "required": false
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "qdrant-mcp"],
+        "env": {
+          "QDRANT_URL": "$QDRANT_URL",
+          "QDRANT_API_KEY": "$QDRANT_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "chroma",
+      "name": "Chroma",
+      "description": "AI-native embedding database for building RAG applications with semantic search.",
+      "icon": "",
+      "category": "data",
+      "tags": ["vector", "embeddings", "search", "rag"],
+      "credentials": [
+        {
+          "key": "CHROMA_HOST",
+          "label": "Host",
+          "placeholder": "localhost",
+          "helpText": "Hostname of your Chroma server",
+          "required": true
+        },
+        {
+          "key": "CHROMA_PORT",
+          "label": "Port",
+          "placeholder": "8000",
+          "helpText": "Port number for your Chroma server",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "chroma-mcp"],
+        "env": {
+          "CHROMA_HOST": "$CHROMA_HOST",
+          "CHROMA_PORT": "$CHROMA_PORT"
+        }
+      }
+    },
+    {
+      "id": "brave-search",
+      "name": "Brave Search",
+      "description": "Privacy-focused web and local search powered by Brave's independent index.",
+      "icon": "brave-search.svg",
+      "category": "search",
+      "tags": ["web", "search", "privacy"],
+      "credentials": [
+        {
+          "key": "BRAVE_API_KEY",
+          "label": "API Key",
+          "placeholder": "BSA_xxxxxxxxxxxx",
+          "helpUrl": "https://brave.com/search/api/",
+          "helpText": "Get a free API key at brave.com/search/api",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-brave-search"],
+        "env": {
+          "BRAVE_API_KEY": "$BRAVE_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "exa",
+      "name": "Exa",
+      "description": "AI-native search engine — semantic web search, code search, and content extraction.",
+      "icon": "",
+      "category": "search",
+      "tags": ["web", "search", "semantic", "code"],
+      "credentials": [
+        {
+          "key": "EXA_API_KEY",
+          "label": "API Key",
+          "placeholder": "exa_xxxxxxxxxxxx",
+          "helpUrl": "https://dashboard.exa.ai/api-keys",
+          "helpText": "Create an API key at dashboard.exa.ai",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "exa-mcp-server"],
+        "env": {
+          "EXA_API_KEY": "$EXA_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "tavily",
+      "name": "Tavily",
+      "description": "AI-optimized search with real-time results, content extraction, and crawling.",
+      "icon": "",
+      "category": "search",
+      "tags": ["web", "search", "extract", "crawl"],
+      "credentials": [
+        {
+          "key": "TAVILY_API_KEY",
+          "label": "API Key",
+          "placeholder": "tvly-xxxxxxxxxxxx",
+          "helpUrl": "https://app.tavily.com/home",
+          "helpText": "Get an API key at app.tavily.com",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "tavily-mcp@latest"],
+        "env": {
+          "TAVILY_API_KEY": "$TAVILY_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "firecrawl",
+      "name": "Firecrawl",
+      "description": "Scrape, crawl, and extract structured data from any website.",
+      "icon": "",
+      "category": "search",
+      "tags": ["web", "scrape", "crawl", "extract"],
+      "credentials": [
+        {
+          "key": "FIRECRAWL_API_KEY",
+          "label": "API Key",
+          "placeholder": "fc-xxxxxxxxxxxx",
+          "helpUrl": "https://www.firecrawl.dev/app/api-keys",
+          "helpText": "Get an API key at firecrawl.dev",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "firecrawl-mcp"],
+        "env": {
+          "FIRECRAWL_API_KEY": "$FIRECRAWL_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "google-maps",
+      "name": "Google Maps",
+      "description": "Geocode addresses, search places, get directions, and compute distances.",
+      "icon": "google-maps.svg",
+      "category": "data",
+      "tags": ["maps", "geocoding", "places", "directions"],
+      "credentials": [
+        {
+          "key": "GOOGLE_MAPS_API_KEY",
+          "label": "API Key",
+          "placeholder": "AIza_xxxxxxxxxxxx",
+          "helpUrl": "https://console.cloud.google.com/apis/credentials",
+          "helpText": "Create a Maps API key in Google Cloud Console",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@modelcontextprotocol/server-google-maps"],
+        "env": {
+          "GOOGLE_MAPS_API_KEY": "$GOOGLE_MAPS_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "twitter",
+      "name": "X (Twitter)",
+      "description": "Post tweets, search Twitter, read timelines, and manage followers.",
+      "icon": "twitter.svg",
+      "category": "social",
+      "tags": ["twitter", "x", "tweets", "social-media"],
+      "credentials": [
+        {
+          "key": "API_KEY",
+          "label": "API Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://developer.x.com/en/portal/dashboard",
+          "helpText": "Create a project at developer.x.com and copy the API Key",
+          "required": true
+        },
+        {
+          "key": "API_SECRET_KEY",
+          "label": "API Secret Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpText": "The API Secret Key from your X developer app",
+          "required": true
+        },
+        {
+          "key": "ACCESS_TOKEN",
+          "label": "Access Token",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpText": "OAuth 1.0a Access Token for your account",
+          "required": true
+        },
+        {
+          "key": "ACCESS_TOKEN_SECRET",
+          "label": "Access Token Secret",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpText": "OAuth 1.0a Access Token Secret",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@enescinar/twitter-mcp"],
+        "env": {
+          "API_KEY": "$API_KEY",
+          "API_SECRET_KEY": "$API_SECRET_KEY",
+          "ACCESS_TOKEN": "$ACCESS_TOKEN",
+          "ACCESS_TOKEN_SECRET": "$ACCESS_TOKEN_SECRET"
+        }
+      }
+    },
+    {
+      "id": "discord",
+      "name": "Discord",
+      "description": "Send messages, read channels, manage servers, and interact with Discord communities.",
+      "icon": "discord.svg",
+      "category": "social",
+      "tags": ["discord", "chat", "communities", "bots"],
+      "credentials": [
+        {
+          "key": "DISCORD_TOKEN",
+          "label": "Bot Token",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://discord.com/developers/applications",
+          "helpText": "Create a bot at discord.com/developers and copy the token",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "discord-mcp@latest"],
+        "env": {
+          "DISCORD_TOKEN": "$DISCORD_TOKEN"
+        }
+      }
+    },
+    {
+      "id": "reddit",
+      "name": "Reddit",
+      "description": "Search posts, read subreddits, post content, and manage Reddit interactions.",
+      "icon": "reddit.svg",
+      "category": "social",
+      "tags": ["reddit", "subreddits", "posts", "social-media"],
+      "credentials": [
+        {
+          "key": "REDDIT_CLIENT_ID",
+          "label": "Client ID",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://www.reddit.com/prefs/apps",
+          "helpText": "Create a script app at reddit.com/prefs/apps",
+          "required": true
+        },
+        {
+          "key": "REDDIT_CLIENT_SECRET",
+          "label": "Client Secret",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpText": "The secret from your Reddit app",
+          "required": true
+        },
+        {
+          "key": "REDDIT_USERNAME",
+          "label": "Username",
+          "placeholder": "your_username",
+          "helpText": "Your Reddit username (for posting)",
+          "required": false
+        },
+        {
+          "key": "REDDIT_PASSWORD",
+          "label": "Password",
+          "placeholder": "your_password",
+          "helpText": "Your Reddit password (for posting)",
+          "required": false
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "reddit-mcp-server"],
+        "env": {
+          "REDDIT_CLIENT_ID": "$REDDIT_CLIENT_ID",
+          "REDDIT_CLIENT_SECRET": "$REDDIT_CLIENT_SECRET",
+          "REDDIT_USERNAME": "$REDDIT_USERNAME",
+          "REDDIT_PASSWORD": "$REDDIT_PASSWORD"
+        }
+      }
+    },
+    {
+      "id": "telegram",
+      "name": "Telegram",
+      "description": "Send messages, manage channels, and interact with Telegram bots.",
+      "icon": "telegram.svg",
+      "category": "social",
+      "tags": ["telegram", "messaging", "bots", "channels"],
+      "credentials": [
+        {
+          "key": "TELEGRAM_BOT_TOKEN",
+          "label": "Bot Token",
+          "placeholder": "123456:ABC-DEF...",
+          "helpUrl": "https://t.me/BotFather",
+          "helpText": "Create a bot via @BotFather on Telegram and copy the token",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@iqai/mcp-telegram"],
+        "env": {
+          "TELEGRAM_BOT_TOKEN": "$TELEGRAM_BOT_TOKEN"
+        }
+      }
+    },
+    {
+      "id": "whatsapp",
+      "name": "WhatsApp",
+      "description": "Send messages and manage conversations via WhatsApp Business API.",
+      "icon": "whatsapp.svg",
+      "category": "social",
+      "tags": ["whatsapp", "messaging", "business"],
+      "credentials": [
+        {
+          "key": "WHATSAPP_API_TOKEN",
+          "label": "API Token",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://developers.facebook.com/apps/",
+          "helpText": "Create a WhatsApp Business app at developers.facebook.com",
+          "required": true
+        },
+        {
+          "key": "WHATSAPP_PHONE_NUMBER_ID",
+          "label": "Phone Number ID",
+          "placeholder": "123456789",
+          "helpText": "Your WhatsApp Business phone number ID",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@periskope/whatsapp-mcp"],
+        "env": {
+          "WHATSAPP_API_TOKEN": "$WHATSAPP_API_TOKEN",
+          "WHATSAPP_PHONE_NUMBER_ID": "$WHATSAPP_PHONE_NUMBER_ID"
+        }
+      }
+    },
+    {
+      "id": "youtube",
+      "name": "YouTube",
+      "description": "Search videos, fetch transcripts, manage channels, and analyze video content.",
+      "icon": "youtube.svg",
+      "category": "social",
+      "tags": ["youtube", "video", "transcripts", "media"],
+      "credentials": [
+        {
+          "key": "YOUTUBE_API_KEY",
+          "label": "API Key",
+          "placeholder": "AIza_xxxxxxxxxxxx",
+          "helpUrl": "https://console.cloud.google.com/apis/credentials",
+          "helpText": "Enable YouTube Data API v3 and create an API key in Google Cloud Console",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "youtube-mcp-server"],
+        "env": {
+          "YOUTUBE_API_KEY": "$YOUTUBE_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "google-workspace",
+      "name": "Google Workspace",
+      "description": "Access Gmail, Google Drive, Calendar, Docs, Sheets, and Slides.",
+      "icon": "google-workspace.svg",
+      "category": "productivity",
+      "tags": ["gmail", "drive", "calendar", "sheets", "docs"],
+      "credentials": [
+        {
+          "key": "GOOGLE_CLIENT_ID",
+          "label": "OAuth Client ID",
+          "placeholder": "xxxxxxxxxxxx.apps.googleusercontent.com",
+          "helpUrl": "https://console.cloud.google.com/apis/credentials",
+          "helpText": "Create an OAuth 2.0 Client ID in Google Cloud Console",
+          "required": true
+        },
+        {
+          "key": "GOOGLE_CLIENT_SECRET",
+          "label": "OAuth Client Secret",
+          "placeholder": "GOCSPX-xxxxxxxxxxxx",
+          "helpText": "The client secret from your OAuth credentials",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@alanxchen/google-workspace-mcp"],
+        "env": {
+          "GOOGLE_CLIENT_ID": "$GOOGLE_CLIENT_ID",
+          "GOOGLE_CLIENT_SECRET": "$GOOGLE_CLIENT_SECRET"
+        }
+      }
+    },
+    {
+      "id": "stripe",
+      "name": "Stripe",
+      "description": "Manage payments, customers, subscriptions, and invoices via Stripe.",
+      "icon": "stripe.svg",
+      "category": "commerce",
+      "tags": ["payments", "billing", "subscriptions", "invoices"],
+      "credentials": [
+        {
+          "key": "STRIPE_SECRET_KEY",
+          "label": "Secret Key",
+          "placeholder": "sk_live_xxxxxxxxxxxx",
+          "helpUrl": "https://dashboard.stripe.com/apikeys",
+          "helpText": "Use a restricted key (rk_*) for better security",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@stripe/mcp", "--tools=all"],
+        "env": {
+          "STRIPE_SECRET_KEY": "$STRIPE_SECRET_KEY"
+        }
+      }
+    },
+    {
+      "id": "shopify",
+      "name": "Shopify",
+      "description": "Manage products, orders, customers, and store operations on Shopify.",
+      "icon": "shopify.svg",
+      "category": "commerce",
+      "tags": ["ecommerce", "products", "orders", "store"],
+      "credentials": [
+        {
+          "key": "SHOPIFY_ACCESS_TOKEN",
+          "label": "Access Token",
+          "placeholder": "shpat_xxxxxxxxxxxx",
+          "helpUrl": "https://admin.shopify.com/store/YOUR_STORE/settings/apps/development",
+          "helpText": "Create a custom app in Shopify admin and copy the Admin API access token",
+          "required": true
+        },
+        {
+          "key": "MYSHOPIFY_DOMAIN",
+          "label": "Store Domain",
+          "placeholder": "your-store.myshopify.com",
+          "helpText": "Your Shopify store domain (e.g. your-store.myshopify.com)",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "shopify-mcp"],
+        "env": {
+          "SHOPIFY_ACCESS_TOKEN": "$SHOPIFY_ACCESS_TOKEN",
+          "MYSHOPIFY_DOMAIN": "$MYSHOPIFY_DOMAIN"
+        }
+      }
+    },
+    {
+      "id": "todoist",
+      "name": "Todoist",
+      "description": "Create and manage tasks, projects, labels, and reminders in Todoist.",
+      "icon": "todoist.svg",
+      "category": "productivity",
+      "tags": ["tasks", "todo", "projects", "productivity"],
+      "credentials": [
+        {
+          "key": "TODOIST_API_TOKEN",
+          "label": "API Token",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://app.todoist.com/app/settings/integrations/developer",
+          "helpText": "Copy your API token from Todoist Settings > Integrations > Developer",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@abhiz123/todoist-mcp-server"],
+        "env": {
+          "TODOIST_API_TOKEN": "$TODOIST_API_TOKEN"
+        }
+      }
+    },
+    {
+      "id": "gemini-image",
+      "name": "Gemini Image (Nano Banana)",
+      "description": "Generate and edit images using Google Gemini with automatic prompt optimization and quality presets.",
+      "icon": "gemini.svg",
+      "category": "media",
+      "tags": ["image", "generation", "gemini", "nano-banana", "editing"],
+      "credentials": [
+        {
+          "key": "GEMINI_API_KEY",
+          "label": "Gemini API Key",
+          "placeholder": "AIza_xxxxxxxxxxxx",
+          "helpUrl": "https://aistudio.google.com/apikey",
+          "helpText": "Get a free API key at aistudio.google.com",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "mcp-image"],
+        "env": {
+          "GEMINI_API_KEY": "$GEMINI_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "openai-image",
+      "name": "OpenAI Image (DALL-E / GPT Image)",
+      "description": "Generate and edit images using DALL-E 3, GPT-Image-1, with text-to-image and inpainting.",
+      "icon": "openai.svg",
+      "category": "media",
+      "tags": ["image", "generation", "dall-e", "gpt-image", "editing"],
+      "credentials": [
+        {
+          "key": "OPENAI_API_KEY",
+          "label": "API Key",
+          "placeholder": "sk-xxxxxxxxxxxx",
+          "helpUrl": "https://platform.openai.com/api-keys",
+          "helpText": "Create an API key at platform.openai.com",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@cloudwerxlab/gpt-image-1-mcp"],
+        "env": {
+          "OPENAI_API_KEY": "$OPENAI_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "stability-ai",
+      "name": "Stability AI (Stable Diffusion)",
+      "description": "Generate, edit, upscale, and transform images with Stable Diffusion models.",
+      "icon": "stability-ai.svg",
+      "category": "media",
+      "tags": ["image", "generation", "stable-diffusion", "upscale", "editing"],
+      "credentials": [
+        {
+          "key": "STABILITY_AI_API_KEY",
+          "label": "API Key",
+          "placeholder": "sk-xxxxxxxxxxxx",
+          "helpUrl": "https://platform.stability.ai/account/keys",
+          "helpText": "Sign up at stability.ai for 25 free credits",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "mcp-server-stability-ai"],
+        "env": {
+          "STABILITY_AI_API_KEY": "$STABILITY_AI_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "replicate",
+      "name": "Replicate",
+      "description": "Run 1000+ AI models — image generation (Flux, SDXL), video, audio, and more.",
+      "icon": "replicate.svg",
+      "category": "media",
+      "tags": ["image", "video", "audio", "flux", "models"],
+      "credentials": [
+        {
+          "key": "REPLICATE_API_TOKEN",
+          "label": "API Token",
+          "placeholder": "r8_xxxxxxxxxxxx",
+          "helpUrl": "https://replicate.com/account/api-tokens",
+          "helpText": "Create an API token at replicate.com",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "replicate-mcp"],
+        "env": {
+          "REPLICATE_API_TOKEN": "$REPLICATE_API_TOKEN"
+        }
+      }
+    },
+    {
+      "id": "fal-ai",
+      "name": "fal.ai",
+      "description": "Access 600+ generative AI models — image, video, audio, and 3D generation.",
+      "icon": "",
+      "category": "media",
+      "tags": ["image", "video", "audio", "3d", "generation"],
+      "credentials": [
+        {
+          "key": "FAL_KEY",
+          "label": "API Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://fal.ai/dashboard/keys",
+          "helpText": "Create an API key at fal.ai/dashboard",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@monsoft/mcp-fal-ai"],
+        "env": {
+          "FAL_KEY": "$FAL_KEY"
+        }
+      }
+    },
+    {
+      "id": "elevenlabs",
+      "name": "ElevenLabs",
+      "description": "Generate speech, clone voices, transcribe audio, and manage voice AI agents.",
+      "icon": "elevenlabs.svg",
+      "category": "media",
+      "tags": ["tts", "voice", "speech", "audio", "cloning"],
+      "credentials": [
+        {
+          "key": "ELEVENLABS_API_KEY",
+          "label": "API Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://elevenlabs.io/app/settings/api-keys",
+          "helpText": "Free tier with 10k credits/month at elevenlabs.io",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "elevenlabs-mcp-enhanced"],
+        "env": {
+          "ELEVENLABS_API_KEY": "$ELEVENLABS_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "minimax",
+      "name": "MiniMax",
+      "description": "Generate images, videos, speech, and music with MiniMax AI models.",
+      "icon": "",
+      "category": "media",
+      "tags": ["image", "video", "tts", "music", "generation"],
+      "credentials": [
+        {
+          "key": "MINIMAX_API_KEY",
+          "label": "API Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://www.minimax.io/platform/user-center/basic-information/interface-key",
+          "helpText": "Get an API key from MiniMax platform",
+          "required": true
+        },
+        {
+          "key": "MINIMAX_MCP_BASE_PATH",
+          "label": "Output Directory",
+          "placeholder": "~/minimax-output",
+          "helpText": "Directory where generated files will be saved",
+          "required": false
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "minimax-mcp-js"],
+        "env": {
+          "MINIMAX_API_KEY": "$MINIMAX_API_KEY",
+          "MINIMAX_MCP_BASE_PATH": "$MINIMAX_MCP_BASE_PATH"
+        }
+      }
+    },
+    {
+      "id": "instagram",
+      "name": "Instagram",
+      "description": "Manage Instagram Business accounts — post content, read insights, and engage with followers.",
+      "icon": "instagram.svg",
+      "category": "social",
+      "tags": ["instagram", "social-media", "photos", "stories"],
+      "credentials": [
+        {
+          "key": "INSTAGRAM_ACCESS_TOKEN",
+          "label": "Access Token",
+          "placeholder": "IGQV...",
+          "helpUrl": "https://developers.facebook.com/apps/",
+          "helpText": "Create a Facebook app with Instagram Graph API permissions",
+          "required": true
+        },
+        {
+          "key": "INSTAGRAM_ACCOUNT_ID",
+          "label": "Account ID",
+          "placeholder": "17841400000000000",
+          "helpText": "Your Instagram Business or Creator account ID",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@mcpware/instagram-mcp"],
+        "env": {
+          "INSTAGRAM_ACCESS_TOKEN": "$INSTAGRAM_ACCESS_TOKEN",
+          "INSTAGRAM_ACCOUNT_ID": "$INSTAGRAM_ACCOUNT_ID"
+        }
+      }
+    },
+    {
+      "id": "facebook",
+      "name": "Facebook (Meta Ads)",
+      "description": "Manage Facebook and Instagram ad campaigns, audiences, and performance analytics.",
+      "icon": "facebook.svg",
+      "category": "social",
+      "tags": ["facebook", "meta", "ads", "marketing"],
+      "credentials": [
+        {
+          "key": "META_ACCESS_TOKEN",
+          "label": "Access Token",
+          "placeholder": "EAAx...",
+          "helpUrl": "https://developers.facebook.com/tools/explorer/",
+          "helpText": "Generate a token with ads_read and ads_management permissions",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "meta-ads-mcp"],
+        "env": {
+          "META_ACCESS_TOKEN": "$META_ACCESS_TOKEN"
+        }
+      }
+    },
+    {
+      "id": "tiktok",
+      "name": "TikTok",
+      "description": "Discover videos, extract metadata, and analyze TikTok content and trends.",
+      "icon": "tiktok.svg",
+      "category": "social",
+      "tags": ["tiktok", "video", "trends", "social-media"],
+      "credentials": [
+        {
+          "key": "TIKNEURON_MCP_API_KEY",
+          "label": "TikNeuron API Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://tikneuron.com",
+          "helpText": "Create an account at TikNeuron and get an API key",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "tiktok-mcp"],
+        "env": {
+          "TIKNEURON_MCP_API_KEY": "$TIKNEURON_MCP_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "mercadolibre",
+      "name": "MercadoLibre",
+      "description": "Search products, browse categories, track trends, and check seller reputation across Latin America.",
+      "icon": "mercadolibre.svg",
+      "category": "commerce",
+      "tags": ["ecommerce", "marketplace", "products", "latam"],
+      "credentials": [
+        {
+          "key": "CLIENT_ID",
+          "label": "App ID",
+          "placeholder": "123456789",
+          "helpUrl": "https://developers.mercadolibre.com/",
+          "helpText": "Create an app at developers.mercadolibre.com and copy the App ID",
+          "required": true
+        },
+        {
+          "key": "CLIENT_SECRET",
+          "label": "Secret Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpText": "The secret key from your MercadoLibre app",
+          "required": true
+        },
+        {
+          "key": "SITE_ID",
+          "label": "Site ID",
+          "placeholder": "MLA",
+          "helpText": "Country site: MLA (Argentina), MLB (Brazil), MLM (Mexico), MLC (Chile), MCO (Colombia)",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "mercadolibre-mcp"],
+        "env": {
+          "CLIENT_ID": "$CLIENT_ID",
+          "CLIENT_SECRET": "$CLIENT_SECRET",
+          "SITE_ID": "$SITE_ID"
+        }
+      }
+    },
+    {
+      "id": "amazon",
+      "name": "Amazon Shopping",
+      "description": "Search products, view details, manage cart, and browse Amazon catalogs.",
+      "icon": "amazon.svg",
+      "category": "commerce",
+      "tags": ["ecommerce", "marketplace", "products", "shopping"],
+      "credentials": [
+        {
+          "key": "AWS_ACCESS_KEY_ID",
+          "label": "AWS Access Key ID",
+          "placeholder": "AKIA...",
+          "helpUrl": "https://affiliate-program.amazon.com/",
+          "helpText": "Sign up for the Amazon Associates program",
+          "required": true
+        },
+        {
+          "key": "AWS_SECRET_ACCESS_KEY",
+          "label": "AWS Secret Access Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpText": "Your AWS secret access key",
+          "required": true
+        },
+        {
+          "key": "AWS_ASSOCIATE_TAG",
+          "label": "Associate Tag",
+          "placeholder": "mytag-20",
+          "helpText": "Your Amazon Associates tracking tag",
+          "required": true
+        },
+        {
+          "key": "AWS_REGION",
+          "label": "Region",
+          "placeholder": "us-east-1",
+          "helpText": "AWS region for your marketplace (e.g. us-east-1, eu-west-1)",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "amazon-shopping-mcp"],
+        "env": {
+          "AWS_ACCESS_KEY_ID": "$AWS_ACCESS_KEY_ID",
+          "AWS_SECRET_ACCESS_KEY": "$AWS_SECRET_ACCESS_KEY",
+          "AWS_ASSOCIATE_TAG": "$AWS_ASSOCIATE_TAG",
+          "AWS_REGION": "$AWS_REGION"
+        }
+      }
+    },
+    {
+      "id": "image-reader",
+      "name": "Image Reader",
+      "description": "Read local image files and return their content as base64 for AI analysis.",
+      "icon": "",
+      "category": "media",
+      "tags": ["images", "base64", "local", "vision"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "uvx",
+        "args": ["image-reader-mcp"],
+        "env": {}
+      }
+    },
+    {
+      "id": "mcp-images",
+      "name": "Image Processor",
+      "description": "Fetch and process images from URLs or local paths with base64 encoding.",
+      "icon": "",
+      "category": "media",
+      "tags": ["images", "base64", "processing", "fetch"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "mcp-images"],
+        "env": {}
+      }
+    },
+    {
+      "id": "screenshot",
+      "name": "Screenshot",
+      "description": "Capture screenshots of your screen, windows, or regions.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["screenshot", "screen", "capture", "local"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "mcp-screenshot-server"],
+        "env": {}
+      }
+    },
+    {
+      "id": "mermaid",
+      "name": "Mermaid Diagrams",
+      "description": "Generate diagrams and charts from Mermaid syntax as PNG or SVG images.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["diagrams", "charts", "mermaid", "visualization"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "mermaid-mcp-server"],
+        "env": {}
+      }
+    },
+    {
+      "id": "pandoc",
+      "name": "Pandoc",
+      "description": "Convert documents between formats: PDF, HTML, Markdown, DOCX, LaTeX, EPUB.",
+      "icon": "",
+      "category": "productivity",
+      "tags": ["documents", "conversion", "pdf", "markdown"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "mcp-pandoc"],
+        "env": {}
+      }
+    },
+    {
+      "id": "ffmpeg",
+      "name": "FFmpeg Media",
+      "description": "Edit video and audio files: trim, convert, extract, overlay, and concatenate.",
+      "icon": "",
+      "category": "media",
+      "tags": ["video", "audio", "ffmpeg", "conversion"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "uvx",
+        "args": ["video-audio-mcp"],
+        "env": {}
+      }
+    },
+    {
+      "id": "eslint",
+      "name": "ESLint",
+      "description": "Run ESLint on your codebase for JavaScript and TypeScript linting.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["linting", "javascript", "typescript", "code-quality"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "eslint", "--mcp"],
+        "env": {}
+      }
+    },
+    {
+      "id": "kubernetes",
+      "name": "Kubernetes",
+      "description": "Manage Kubernetes clusters: pods, deployments, services, and logs.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["kubernetes", "k8s", "containers", "devops"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "mcp-server-kubernetes"],
+        "env": {}
+      }
+    },
+    {
+      "id": "redis",
+      "name": "Redis",
+      "description": "Manage and search data in your local Redis instance.",
+      "icon": "",
+      "category": "data",
+      "tags": ["redis", "cache", "database", "key-value"],
+      "credentials": [
+        {
+          "key": "REDIS_URL",
+          "label": "Redis URL",
+          "placeholder": "redis://localhost:6379/0",
+          "helpText": "Connection URL for your Redis instance",
+          "required": false
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "uvx",
+        "args": ["--from", "redis-mcp-server@latest", "redis-mcp-server"],
+        "env": {
+          "REDIS_URL": "$REDIS_URL"
+        }
+      }
+    },
+    {
+      "id": "desktop-commander",
+      "name": "Desktop Commander",
+      "description": "Terminal execution with output streaming, file search, diff editing, and process management.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["terminal", "files", "process", "system"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@anthropic/desktop-commander"],
+        "env": {}
+      }
+    },
+    {
+      "id": "sentry",
+      "name": "Sentry",
+      "description": "Query error tracking issues, stack traces, and performance data from Sentry.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["errors", "monitoring", "debugging", "performance"],
+      "credentials": [
+        {
+          "key": "SENTRY_ACCESS_TOKEN",
+          "label": "Access Token",
+          "placeholder": "sntrys_xxxxxxxxxxxx",
+          "helpUrl": "https://sentry.io/settings/auth-tokens/",
+          "helpText": "Create a token with project:read, org:read, and event:read scopes",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@sentry/mcp-server"],
+        "env": {
+          "SENTRY_ACCESS_TOKEN": "$SENTRY_ACCESS_TOKEN"
+        }
+      }
+    },
+    {
+      "id": "cloudflare",
+      "name": "Cloudflare",
+      "description": "Manage DNS, Workers, R2 storage, and Cloudflare API endpoints via OAuth.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["dns", "workers", "cdn", "edge"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "mcp-remote", "https://bindings.mcp.cloudflare.com/mcp"],
+        "env": {}
+      }
+    },
+    {
+      "id": "vercel",
+      "name": "Vercel",
+      "description": "Manage deployments, projects, domains, and search Vercel docs.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["deploy", "hosting", "serverless", "nextjs"],
+      "credentials": [
+        {
+          "key": "VERCEL_API_KEY",
+          "label": "API Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://vercel.com/account/tokens",
+          "helpText": "Create a token in your Vercel account settings",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "vercel-mcp"],
+        "env": {
+          "VERCEL_API_KEY": "$VERCEL_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "netlify",
+      "name": "Netlify",
+      "description": "Create projects, manage deployments, and build sites on Netlify.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["deploy", "hosting", "sites", "builds"],
+      "credentials": [
+        {
+          "key": "NETLIFY_PERSONAL_ACCESS_TOKEN",
+          "label": "Personal Access Token",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://app.netlify.com/user/applications#personal-access-tokens",
+          "helpText": "Go to User Settings > OAuth > New access token",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@netlify/mcp"],
+        "env": {
+          "NETLIFY_PERSONAL_ACCESS_TOKEN": "$NETLIFY_PERSONAL_ACCESS_TOKEN"
+        }
+      }
+    },
+    {
+      "id": "docker",
+      "name": "Docker",
+      "description": "Manage Docker containers, images, networks, and volumes.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["containers", "images", "devops", "compose"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "uvx",
+        "args": ["mcp-server-docker"],
+        "env": {}
+      }
+    },
+    {
+      "id": "e2b",
+      "name": "E2B",
+      "description": "Run code in secure cloud sandboxes with isolated microVMs.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["sandbox", "code-execution", "cloud", "security"],
+      "credentials": [
+        {
+          "key": "E2B_API_KEY",
+          "label": "API Key",
+          "placeholder": "e2b_xxxxxxxxxxxx",
+          "helpUrl": "https://e2b.dev/dashboard",
+          "helpText": "Get your API key from the E2B dashboard",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@e2b/mcp-server"],
+        "env": {
+          "E2B_API_KEY": "$E2B_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "grafana",
+      "name": "Grafana",
+      "description": "Query dashboards, alerts, incidents, and observability data from Grafana.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["monitoring", "dashboards", "alerts", "observability"],
+      "credentials": [
+        {
+          "key": "GRAFANA_URL",
+          "label": "Grafana URL",
+          "placeholder": "https://your-instance.grafana.net",
+          "helpText": "Your Grafana instance URL",
+          "required": true
+        },
+        {
+          "key": "GRAFANA_SERVICE_ACCOUNT_TOKEN",
+          "label": "Service Account Token",
+          "placeholder": "glsa_xxxxxxxxxxxx",
+          "helpUrl": "https://grafana.com/docs/grafana/latest/administration/service-accounts/",
+          "helpText": "Create a service account token in Grafana > Administration > Service Accounts",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@leval/mcp-grafana"],
+        "env": {
+          "GRAFANA_URL": "$GRAFANA_URL",
+          "GRAFANA_SERVICE_ACCOUNT_TOKEN": "$GRAFANA_SERVICE_ACCOUNT_TOKEN"
+        }
+      }
+    },
+    {
+      "id": "datadog",
+      "name": "Datadog",
+      "description": "Query logs, metrics, traces, dashboards, and incidents from Datadog.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["monitoring", "logs", "apm", "observability"],
+      "credentials": [
+        {
+          "key": "DATADOG_API_KEY",
+          "label": "API Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://app.datadoghq.com/organization-settings/api-keys",
+          "helpText": "Create an API key in Datadog > Organization Settings > API Keys",
+          "required": true
+        },
+        {
+          "key": "DATADOG_APP_KEY",
+          "label": "Application Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://app.datadoghq.com/organization-settings/application-keys",
+          "helpText": "Create an application key in Datadog > Organization Settings > Application Keys",
+          "required": true
+        },
+        {
+          "key": "DATADOG_SITE",
+          "label": "Site",
+          "placeholder": "datadoghq.com",
+          "helpText": "Your Datadog site (e.g. datadoghq.com, datadoghq.eu, us5.datadoghq.com)",
+          "required": false
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@winor30/mcp-server-datadog"],
+        "env": {
+          "DATADOG_API_KEY": "$DATADOG_API_KEY",
+          "DATADOG_APP_KEY": "$DATADOG_APP_KEY",
+          "DATADOG_SITE": "$DATADOG_SITE"
+        }
+      }
+    },
+    {
+      "id": "pagerduty",
+      "name": "PagerDuty",
+      "description": "Manage incidents, services, schedules, and on-call rotations.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["incidents", "on-call", "alerting", "ops"],
+      "credentials": [
+        {
+          "key": "PAGERDUTY_USER_API_KEY",
+          "label": "User API Key",
+          "placeholder": "u+xxxxxxxxxxxx",
+          "helpUrl": "https://support.pagerduty.com/main/docs/api-access-keys",
+          "helpText": "Go to My Profile > User Settings > Create API User Token",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "uvx",
+        "args": ["pagerduty-mcp"],
+        "env": {
+          "PAGERDUTY_USER_API_KEY": "$PAGERDUTY_USER_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "atlassian",
+      "name": "Atlassian (Jira + Confluence)",
+      "description": "Manage Jira issues, sprints, and Confluence pages across Cloud and Server.",
+      "icon": "",
+      "category": "productivity",
+      "tags": ["jira", "confluence", "issues", "wiki"],
+      "credentials": [
+        {
+          "key": "JIRA_URL",
+          "label": "Jira URL",
+          "placeholder": "https://your-domain.atlassian.net",
+          "helpText": "Your Jira Cloud or Server URL",
+          "required": true
+        },
+        {
+          "key": "JIRA_USERNAME",
+          "label": "Email / Username",
+          "placeholder": "you@example.com",
+          "helpText": "Your Atlassian account email (Cloud) or username (Server)",
+          "required": true
+        },
+        {
+          "key": "JIRA_API_TOKEN",
+          "label": "API Token",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://id.atlassian.com/manage-profile/security/api-tokens",
+          "helpText": "Create an API token at Atlassian account settings",
+          "required": true
+        },
+        {
+          "key": "CONFLUENCE_URL",
+          "label": "Confluence URL",
+          "placeholder": "https://your-domain.atlassian.net/wiki",
+          "helpText": "Your Confluence URL (often same domain as Jira with /wiki)",
+          "required": false
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "uvx",
+        "args": ["mcp-atlassian"],
+        "env": {
+          "JIRA_URL": "$JIRA_URL",
+          "JIRA_USERNAME": "$JIRA_USERNAME",
+          "JIRA_API_TOKEN": "$JIRA_API_TOKEN",
+          "CONFLUENCE_URL": "$CONFLUENCE_URL",
+          "CONFLUENCE_USERNAME": "$JIRA_USERNAME",
+          "CONFLUENCE_API_TOKEN": "$JIRA_API_TOKEN"
+        }
+      }
+    },
+    {
+      "id": "asana",
+      "name": "Asana",
+      "description": "Manage tasks, projects, and workspaces in Asana.",
+      "icon": "",
+      "category": "productivity",
+      "tags": ["tasks", "projects", "teams", "workflows"],
+      "credentials": [
+        {
+          "key": "ASANA_ACCESS_TOKEN",
+          "label": "Personal Access Token",
+          "placeholder": "1/xxxxxxxxxxxx",
+          "helpUrl": "https://app.asana.com/0/developer-console",
+          "helpText": "Go to Asana > My Settings > Apps > Developer > Personal Access Tokens",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@roychri/mcp-server-asana"],
+        "env": {
+          "ASANA_ACCESS_TOKEN": "$ASANA_ACCESS_TOKEN"
+        }
+      }
+    },
+    {
+      "id": "clickup",
+      "name": "ClickUp",
+      "description": "Manage tasks, lists, spaces, and track work in ClickUp.",
+      "icon": "",
+      "category": "productivity",
+      "tags": ["tasks", "projects", "teams", "workflows"],
+      "credentials": [
+        {
+          "key": "CLICKUP_PERSONAL_TOKEN",
+          "label": "Personal API Token",
+          "placeholder": "pk_xxxxxxxxxxxx",
+          "helpUrl": "https://app.clickup.com/settings/apps",
+          "helpText": "Go to ClickUp Settings > Apps > Generate API Token",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@chykalophia/clickup-mcp-server"],
+        "env": {
+          "CLICKUP_PERSONAL_TOKEN": "$CLICKUP_PERSONAL_TOKEN"
+        }
+      }
+    },
+    {
+      "id": "trello",
+      "name": "Trello",
+      "description": "Manage Trello boards, lists, and cards.",
+      "icon": "",
+      "category": "productivity",
+      "tags": ["boards", "cards", "kanban", "tasks"],
+      "credentials": [
+        {
+          "key": "TRELLO_API_KEY",
+          "label": "API Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://trello.com/power-ups/admin",
+          "helpText": "Get your API key from Trello Power-Up admin page",
+          "required": true
+        },
+        {
+          "key": "TRELLO_TOKEN",
+          "label": "Token",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpText": "Authorize and get a token using your API key",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@delorenj/mcp-server-trello"],
+        "env": {
+          "TRELLO_API_KEY": "$TRELLO_API_KEY",
+          "TRELLO_TOKEN": "$TRELLO_TOKEN"
+        }
+      }
+    },
+    {
+      "id": "obsidian",
+      "name": "Obsidian",
+      "description": "Read, write, and search notes in your Obsidian vault via the Local REST API plugin.",
+      "icon": "",
+      "category": "productivity",
+      "tags": ["notes", "markdown", "knowledge-base", "vault"],
+      "credentials": [
+        {
+          "key": "OBSIDIAN_API_KEY",
+          "label": "API Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpText": "Install the Local REST API plugin in Obsidian, then copy the API key from its settings",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@mseep/obsidian-mcp-server"],
+        "env": {
+          "OBSIDIAN_API_KEY": "$OBSIDIAN_API_KEY",
+          "OBSIDIAN_BASE_URL": "http://127.0.0.1:27123",
+          "OBSIDIAN_VERIFY_SSL": "false"
+        }
+      }
+    },
+    {
+      "id": "google-calendar",
+      "name": "Google Calendar",
+      "description": "Manage calendar events, check availability, and schedule meetings.",
+      "icon": "",
+      "category": "productivity",
+      "tags": ["calendar", "events", "scheduling", "google"],
+      "credentials": [
+        {
+          "key": "GOOGLE_OAUTH_CREDENTIALS",
+          "label": "OAuth Credentials Path",
+          "placeholder": "/path/to/gcp-oauth.keys.json",
+          "helpUrl": "https://console.cloud.google.com/apis/credentials",
+          "helpText": "Download OAuth 2.0 credentials JSON from Google Cloud Console",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "mcp-google-calendar"],
+        "env": {
+          "GOOGLE_OAUTH_CREDENTIALS": "$GOOGLE_OAUTH_CREDENTIALS"
+        }
+      }
+    },
+    {
+      "id": "neon",
+      "name": "Neon",
+      "description": "Manage Neon serverless Postgres projects, branches, and run queries.",
+      "icon": "",
+      "category": "data",
+      "tags": ["postgres", "serverless", "database", "migrations"],
+      "credentials": [
+        {
+          "key": "NEON_API_KEY",
+          "label": "API Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://console.neon.tech/app/settings/api-keys",
+          "helpText": "Create an API key in the Neon Console > Settings > API Keys",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@neondatabase/mcp-server-neon", "start", "$NEON_API_KEY"],
+        "env": {}
+      }
+    },
+    {
+      "id": "upstash",
+      "name": "Upstash",
+      "description": "Manage Upstash Redis, Kafka, and QStash resources via the developer API.",
+      "icon": "",
+      "category": "data",
+      "tags": ["redis", "kafka", "serverless", "cache"],
+      "credentials": [
+        {
+          "key": "UPSTASH_EMAIL",
+          "label": "Email",
+          "placeholder": "you@example.com",
+          "helpText": "Your Upstash account email",
+          "required": true
+        },
+        {
+          "key": "UPSTASH_API_KEY",
+          "label": "API Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://console.upstash.com/account/api",
+          "helpText": "Create a Management API key in Upstash Console > Account > API Keys",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@upstash/mcp-server"],
+        "env": {
+          "UPSTASH_EMAIL": "$UPSTASH_EMAIL",
+          "UPSTASH_API_KEY": "$UPSTASH_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "turso",
+      "name": "Turso",
+      "description": "Query Turso/libSQL databases with read-only access and schema browsing.",
+      "icon": "",
+      "category": "data",
+      "tags": ["sqlite", "libsql", "database", "edge"],
+      "credentials": [
+        {
+          "key": "TURSO_DATABASE_URL",
+          "label": "Database URL",
+          "placeholder": "libsql://your-db-name.turso.io",
+          "helpText": "Your Turso database URL",
+          "required": true
+        },
+        {
+          "key": "TURSO_AUTH_TOKEN",
+          "label": "Auth Token",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://docs.turso.tech/cli/auth/token",
+          "helpText": "Create a token with turso db tokens create <db-name>",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@prama13/turso-mcp"],
+        "env": {
+          "TURSO_DATABASE_URL": "$TURSO_DATABASE_URL",
+          "TURSO_AUTH_TOKEN": "$TURSO_AUTH_TOKEN"
+        }
+      }
+    },
+    {
+      "id": "mysql",
+      "name": "MySQL",
+      "description": "Query MySQL databases with schema inspection and optional write access.",
+      "icon": "",
+      "category": "data",
+      "tags": ["database", "sql", "mysql", "queries"],
+      "credentials": [
+        {
+          "key": "MYSQL_HOST",
+          "label": "Host",
+          "placeholder": "localhost",
+          "helpText": "MySQL server hostname",
+          "required": true
+        },
+        {
+          "key": "MYSQL_PORT",
+          "label": "Port",
+          "placeholder": "3306",
+          "helpText": "MySQL server port",
+          "required": false
+        },
+        {
+          "key": "MYSQL_USER",
+          "label": "Username",
+          "placeholder": "root",
+          "helpText": "MySQL username",
+          "required": true
+        },
+        {
+          "key": "MYSQL_PASS",
+          "label": "Password",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpText": "MySQL password",
+          "required": true
+        },
+        {
+          "key": "MYSQL_DB",
+          "label": "Database",
+          "placeholder": "mydb",
+          "helpText": "Default database name",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@benborla29/mcp-server-mysql"],
+        "env": {
+          "MYSQL_HOST": "$MYSQL_HOST",
+          "MYSQL_PORT": "$MYSQL_PORT",
+          "MYSQL_USER": "$MYSQL_USER",
+          "MYSQL_PASS": "$MYSQL_PASS",
+          "MYSQL_DB": "$MYSQL_DB"
+        }
+      }
+    },
+    {
+      "id": "elasticsearch",
+      "name": "Elasticsearch",
+      "description": "Search, index, and manage data in Elasticsearch clusters.",
+      "icon": "",
+      "category": "data",
+      "tags": ["search", "indexing", "analytics", "elastic"],
+      "credentials": [
+        {
+          "key": "ES_URL",
+          "label": "Elasticsearch URL",
+          "placeholder": "https://your-cluster.es.io:9243",
+          "helpText": "Your Elasticsearch cluster URL",
+          "required": true
+        },
+        {
+          "key": "ES_API_KEY",
+          "label": "API Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://www.elastic.co/guide/en/elasticsearch/reference/current/security-api-create-api-key.html",
+          "helpText": "Create an API key in Kibana > Stack Management > API Keys",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@elastic/mcp-server-elasticsearch"],
+        "env": {
+          "ES_URL": "$ES_URL",
+          "ES_API_KEY": "$ES_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "pinecone",
+      "name": "Pinecone",
+      "description": "Manage vector indexes, upsert embeddings, and query similarity search.",
+      "icon": "",
+      "category": "data",
+      "tags": ["vectors", "embeddings", "similarity-search", "rag"],
+      "credentials": [
+        {
+          "key": "PINECONE_API_KEY",
+          "label": "API Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://app.pinecone.io/organizations/-/projects/-/keys",
+          "helpText": "Create an API key in the Pinecone Console",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@pinecone-database/mcp"],
+        "env": {
+          "PINECONE_API_KEY": "$PINECONE_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "snowflake",
+      "name": "Snowflake",
+      "description": "Query Snowflake data warehouse with schema browsing and SQL execution.",
+      "icon": "",
+      "category": "data",
+      "tags": ["data-warehouse", "sql", "analytics", "cloud"],
+      "credentials": [
+        {
+          "key": "SNOWFLAKE_ACCOUNT",
+          "label": "Account",
+          "placeholder": "xy12345.us-east-1",
+          "helpText": "Your Snowflake account identifier",
+          "required": true
+        },
+        {
+          "key": "SNOWFLAKE_USER",
+          "label": "Username",
+          "placeholder": "my_user",
+          "helpText": "Snowflake login username",
+          "required": true
+        },
+        {
+          "key": "SNOWFLAKE_PASSWORD",
+          "label": "Password",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpText": "Snowflake login password",
+          "required": true
+        },
+        {
+          "key": "SNOWFLAKE_WAREHOUSE",
+          "label": "Warehouse",
+          "placeholder": "COMPUTE_WH",
+          "helpText": "Default Snowflake warehouse",
+          "required": true
+        },
+        {
+          "key": "SNOWFLAKE_DATABASE",
+          "label": "Database",
+          "placeholder": "MY_DB",
+          "helpText": "Default Snowflake database",
+          "required": true
+        },
+        {
+          "key": "SNOWFLAKE_SCHEMA",
+          "label": "Schema",
+          "placeholder": "PUBLIC",
+          "helpText": "Default Snowflake schema",
+          "required": false
+        },
+        {
+          "key": "SNOWFLAKE_ROLE",
+          "label": "Role",
+          "placeholder": "ANALYST",
+          "helpText": "Snowflake role to use",
+          "required": false
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "uvx",
+        "args": ["mcp_snowflake_server"],
+        "env": {
+          "SNOWFLAKE_ACCOUNT": "$SNOWFLAKE_ACCOUNT",
+          "SNOWFLAKE_USER": "$SNOWFLAKE_USER",
+          "SNOWFLAKE_PASSWORD": "$SNOWFLAKE_PASSWORD",
+          "SNOWFLAKE_WAREHOUSE": "$SNOWFLAKE_WAREHOUSE",
+          "SNOWFLAKE_DATABASE": "$SNOWFLAKE_DATABASE",
+          "SNOWFLAKE_SCHEMA": "$SNOWFLAKE_SCHEMA",
+          "SNOWFLAKE_ROLE": "$SNOWFLAKE_ROLE"
+        }
+      }
+    },
+    {
+      "id": "airtable",
+      "name": "Airtable",
+      "description": "Query and manage records, tables, and bases in Airtable.",
+      "icon": "",
+      "category": "data",
+      "tags": ["spreadsheet", "database", "no-code", "records"],
+      "credentials": [
+        {
+          "key": "AIRTABLE_API_KEY",
+          "label": "Personal Access Token",
+          "placeholder": "pat123.xxxxxxxxxxxx",
+          "helpUrl": "https://airtable.com/create/tokens",
+          "helpText": "Create a personal access token at airtable.com/create/tokens",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "airtable-mcp-server"],
+        "env": {
+          "AIRTABLE_API_KEY": "$AIRTABLE_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "bigquery",
+      "name": "BigQuery",
+      "description": "Query Google BigQuery datasets with schema inspection and SQL execution.",
+      "icon": "",
+      "category": "data",
+      "tags": ["data-warehouse", "sql", "analytics", "google-cloud"],
+      "credentials": [
+        {
+          "key": "BIGQUERY_PROJECT_ID",
+          "label": "Project ID",
+          "placeholder": "my-gcp-project",
+          "helpText": "Your Google Cloud project ID",
+          "required": true
+        },
+        {
+          "key": "BIGQUERY_LOCATION",
+          "label": "Location",
+          "placeholder": "us-central1",
+          "helpText": "GCP location for BigQuery datasets",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "mcp-server-bigquery"],
+        "env": {
+          "BIGQUERY_PROJECT": "$BIGQUERY_PROJECT_ID",
+          "BIGQUERY_LOCATION": "$BIGQUERY_LOCATION"
+        }
+      }
+    },
+    {
+      "id": "hubspot",
+      "name": "HubSpot",
+      "description": "Manage CRM contacts, deals, companies, and marketing content.",
+      "icon": "",
+      "category": "commerce",
+      "tags": ["crm", "marketing", "sales", "contacts"],
+      "credentials": [
+        {
+          "key": "PRIVATE_APP_ACCESS_TOKEN",
+          "label": "Private App Access Token",
+          "placeholder": "pat-xxxxxxxxxxxx",
+          "helpUrl": "https://developers.hubspot.com/docs/api/private-apps",
+          "helpText": "Create a private app in HubSpot > Settings > Integrations > Private Apps",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@hubspot/mcp-server"],
+        "env": {
+          "PRIVATE_APP_ACCESS_TOKEN": "$PRIVATE_APP_ACCESS_TOKEN"
+        }
+      }
+    },
+    {
+      "id": "salesforce",
+      "name": "Salesforce",
+      "description": "Query and manage Salesforce CRM objects, records, and metadata.",
+      "icon": "",
+      "category": "commerce",
+      "tags": ["crm", "sales", "leads", "enterprise"],
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@advanced-communities/salesforce-mcp-server"],
+        "env": {}
+      }
+    },
+    {
+      "id": "figma",
+      "name": "Figma",
+      "description": "Read design files, inspect components, and extract design tokens from Figma.",
+      "icon": "",
+      "category": "media",
+      "tags": ["design", "ui", "components", "prototyping"],
+      "credentials": [
+        {
+          "key": "FIGMA_API_KEY",
+          "label": "Personal Access Token",
+          "placeholder": "figd_xxxxxxxxxxxx",
+          "helpUrl": "https://www.figma.com/developers/api#access-tokens",
+          "helpText": "Go to Figma > Settings > Account > Personal access tokens",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "figma-developer-mcp", "--stdio"],
+        "env": {
+          "FIGMA_API_KEY": "$FIGMA_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "magic-ui",
+      "name": "21st.dev Magic",
+      "description": "Generate modern UI components from natural language prompts.",
+      "icon": "",
+      "category": "media",
+      "tags": ["ui", "components", "react", "generation"],
+      "credentials": [
+        {
+          "key": "TWENTYFIRST_API_KEY",
+          "label": "API Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://21st.dev/magic",
+          "helpText": "Get your API key from 21st.dev",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@21st-dev/magic@latest"],
+        "env": {
+          "API_KEY": "$TWENTYFIRST_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "resend",
+      "name": "Resend",
+      "description": "Send transactional emails, manage domains, and check delivery status.",
+      "icon": "",
+      "category": "productivity",
+      "tags": ["email", "transactional", "delivery", "api"],
+      "credentials": [
+        {
+          "key": "RESEND_API_KEY",
+          "label": "API Key",
+          "placeholder": "re_xxxxxxxxxxxx",
+          "helpUrl": "https://resend.com/api-keys",
+          "helpText": "Create an API key in the Resend dashboard",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "resend-mcp"],
+        "env": {
+          "RESEND_API_KEY": "$RESEND_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "mailgun",
+      "name": "Mailgun",
+      "description": "Send emails, check delivery stats, manage domains, and troubleshoot DNS.",
+      "icon": "",
+      "category": "productivity",
+      "tags": ["email", "delivery", "dns", "api"],
+      "credentials": [
+        {
+          "key": "MAILGUN_API_KEY",
+          "label": "API Key",
+          "placeholder": "key-xxxxxxxxxxxx",
+          "helpUrl": "https://app.mailgun.com/settings/api_security",
+          "helpText": "Find your private API key in Mailgun > Settings > API Keys",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@mailgun/mcp-server"],
+        "env": {
+          "MAILGUN_API_KEY": "$MAILGUN_API_KEY"
+        }
+      }
+    },
+    {
+      "id": "aws",
+      "name": "AWS",
+      "description": "Manage AWS Lambda, DynamoDB, S3, and serverless resources.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["cloud", "lambda", "s3", "serverless"],
+      "credentials": [
+        {
+          "key": "AWS_PROFILE",
+          "label": "AWS Profile",
+          "placeholder": "default",
+          "helpText": "AWS CLI profile name (from ~/.aws/credentials)",
+          "required": false
+        },
+        {
+          "key": "AWS_REGION",
+          "label": "Region",
+          "placeholder": "us-east-1",
+          "helpText": "AWS region for API calls",
+          "required": false
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "uvx",
+        "args": ["awslabs.core-mcp-server@latest"],
+        "env": {
+          "AWS_PROFILE": "$AWS_PROFILE",
+          "AWS_REGION": "$AWS_REGION"
+        }
+      }
+    },
+    {
+      "id": "azure-devops",
+      "name": "Azure DevOps",
+      "description": "Manage repositories, work items, pipelines, and builds in Azure DevOps.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["azure", "repos", "pipelines", "ci-cd"],
+      "credentials": [
+        {
+          "key": "AZURE_DEVOPS_ORG",
+          "label": "Organization Name",
+          "placeholder": "my-org",
+          "helpText": "Your Azure DevOps organization name",
+          "required": true
+        },
+        {
+          "key": "ADO_MCP_AUTH_TOKEN",
+          "label": "Personal Access Token",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://dev.azure.com/_usersSettings/tokens",
+          "helpText": "Create a PAT in Azure DevOps > User Settings > Personal Access Tokens",
+          "required": false
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@azure-devops/mcp"],
+        "env": {
+          "ADO_MCP_AUTH_TOKEN": "$ADO_MCP_AUTH_TOKEN"
+        }
+      }
+    },
+    {
+      "id": "onepassword",
+      "name": "1Password",
+      "description": "Securely retrieve credentials and secrets from 1Password vaults.",
+      "icon": "",
+      "category": "productivity",
+      "tags": ["passwords", "secrets", "vaults", "security"],
+      "credentials": [
+        {
+          "key": "OP_SERVICE_ACCOUNT_TOKEN",
+          "label": "Service Account Token",
+          "placeholder": "ops_xxxxxxxxxxxx",
+          "helpUrl": "https://developer.1password.com/docs/service-accounts/get-started",
+          "helpText": "Create a service account in 1Password > Developer > Service Accounts",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@takescake/1password-mcp"],
+        "env": {
+          "OP_SERVICE_ACCOUNT_TOKEN": "$OP_SERVICE_ACCOUNT_TOKEN"
+        }
+      }
+    },
+    {
+      "id": "apify",
+      "name": "Apify",
+      "description": "Extract data from websites using web scraping actors and crawlers.",
+      "icon": "",
+      "category": "search",
+      "tags": ["scraping", "crawling", "extraction", "automation"],
+      "credentials": [
+        {
+          "key": "APIFY_TOKEN",
+          "label": "API Token",
+          "placeholder": "apify_api_xxxxxxxxxxxx",
+          "helpUrl": "https://console.apify.com/account/integrations",
+          "helpText": "Find your API token in Apify Console > Settings > Integrations",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@apify/mcp-server-rag-web-browser"],
+        "env": {
+          "APIFY_TOKEN": "$APIFY_TOKEN"
+        }
+      }
+    },
+    {
+      "id": "namecheap",
+      "name": "Namecheap",
+      "description": "Check domain availability, get pricing, and register domains via the Namecheap API.",
+      "icon": "",
+      "category": "dev",
+      "tags": ["domains", "dns", "registrar", "namecheap"],
+      "credentials": [
+        {
+          "key": "NC_USERNAME",
+          "label": "Namecheap Username",
+          "placeholder": "myusername",
+          "helpText": "Your Namecheap account username",
+          "required": true
+        },
+        {
+          "key": "NC_API_KEY",
+          "label": "API Key",
+          "placeholder": "xxxxxxxxxxxx",
+          "helpUrl": "https://ap.www.namecheap.com/settings/tools/apiaccess/",
+          "helpText": "Get your API key from Namecheap > Profile > Tools > API Access",
+          "required": true
+        },
+        {
+          "key": "NC_CLIENT_IP",
+          "label": "Whitelisted IP",
+          "placeholder": "123.45.67.89",
+          "helpText": "Your whitelisted IP address for API access",
+          "required": false
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@webdevtoday/nc-mcp-server"],
+        "env": {
+          "NC_USERNAME": "$NC_USERNAME",
+          "NC_API_KEY": "$NC_API_KEY",
+          "NC_CLIENT_IP": "$NC_CLIENT_IP",
+          "NODE_ENV": "production"
+        }
+      }
+    },
+    {
+      "id": "couchdb",
+      "name": "CouchDB",
+      "description": "Manage CouchDB databases, documents, and run Mango queries.",
+      "icon": "",
+      "category": "data",
+      "tags": ["database", "couchdb", "nosql", "documents"],
+      "credentials": [
+        {
+          "key": "COUCHDB_URL",
+          "label": "CouchDB URL",
+          "placeholder": "http://admin:password@localhost:5984",
+          "helpText": "Connection URL including credentials",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "stdio",
+        "command": "npx",
+        "args": ["-y", "@smithery/cli", "run", "@robertoamoreno/couchdb-mcp-server"],
+        "env": {
+          "COUCHDB_URL": "$COUCHDB_URL"
+        }
+      }
+    }
+    ,
+    {
+      "id": "openai-whisper-api",
+      "name": "OpenAI Whisper",
+      "description": "Speech-to-text transcription using OpenAI's Whisper API.",
+      "icon": "openai.svg",
+      "category": "audio",
+      "tags": ["speech", "transcription", "stt", "whisper", "openai"],
+      "capabilities": ["stt"],
+      "credentials": [
+        {
+          "key": "OPENAI_API_KEY",
+          "label": "API Key",
+          "placeholder": "sk-...",
+          "helpUrl": "https://platform.openai.com/api-keys",
+          "helpText": "Get your API key from the OpenAI dashboard",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "builtin"
+      }
+    },
+    {
+      "id": "together-ai-stt",
+      "name": "Together AI STT",
+      "description": "Speech-to-text transcription using Together AI's Whisper models.",
+      "icon": "",
+      "category": "audio",
+      "tags": ["speech", "transcription", "stt", "together", "whisper"],
+      "capabilities": ["stt"],
+      "credentials": [
+        {
+          "key": "TOGETHER_API_KEY",
+          "label": "API Key",
+          "placeholder": "tok-...",
+          "helpUrl": "https://api.together.xyz/settings/api-keys",
+          "helpText": "Get your API key from Together AI dashboard",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "builtin"
+      }
+    },
+    {
+      "id": "elevenlabs-stt",
+      "name": "ElevenLabs STT",
+      "description": "Speech-to-text transcription using ElevenLabs.",
+      "icon": "",
+      "category": "audio",
+      "tags": ["speech", "transcription", "stt", "elevenlabs"],
+      "capabilities": ["stt"],
+      "credentials": [
+        {
+          "key": "ELEVENLABS_API_KEY",
+          "label": "API Key",
+          "placeholder": "el-...",
+          "helpUrl": "https://elevenlabs.io/app/settings/api-keys",
+          "helpText": "Get your API key from ElevenLabs settings",
+          "required": true
+        }
+      ],
+      "mcp": {
+        "transport": "builtin"
+      }
+    }
+  ],
+  "templates": []
+}

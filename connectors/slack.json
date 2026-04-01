@@ -1,0 +1,35 @@
+{
+  "id": "slack",
+  "name": "Slack",
+  "description": "Send messages, read channels, and manage your Slack workspace.",
+  "icon": "slack.png",
+  "category": "productivity",
+  "tags": ["messages", "channels", "users"],
+  "credentials": [
+    {
+      "key": "SLACK_BOT_TOKEN",
+      "label": "Bot User OAuth Token",
+      "placeholder": "xoxb-xxxxxxxxxxxx",
+      "helpUrl": "https://api.slack.com/apps",
+      "helpText": "Create a Slack app and copy the Bot User OAuth Token",
+      "required": true
+    },
+    {
+      "key": "SLACK_TEAM_ID",
+      "label": "Team ID",
+      "placeholder": "T0123456789",
+      "helpUrl": "https://slack.com/help/articles/221769328",
+      "helpText": "Your Slack workspace Team ID",
+      "required": true
+    }
+  ],
+  "mcp": {
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-slack"],
+    "env": {
+      "SLACK_BOT_TOKEN": "$SLACK_BOT_TOKEN",
+      "SLACK_TEAM_ID": "$SLACK_TEAM_ID"
+    }
+  }
+}

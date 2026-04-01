@@ -1,0 +1,22 @@
+{
+  "id": "sqlite",
+  "name": "SQLite",
+  "description": "Query and manage SQLite databases.",
+  "icon": "sqlite.png",
+  "category": "data",
+  "tags": ["database", "sql", "query"],
+  "credentials": [
+    {
+      "key": "SQLITE_DB_PATH",
+      "label": "Database Path",
+      "placeholder": "/path/to/database.db",
+      "helpText": "Path to your SQLite database file",
+      "required": true
+    }
+  ],
+  "mcp": {
+    "transport": "stdio",
+    "command": "npx",
+    "args": ["-y", "@modelcontextprotocol/server-sqlite", "$SQLITE_DB_PATH"]
+  }
+}
