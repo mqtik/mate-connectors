@@ -173,7 +173,7 @@
       "mcp": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-git"]
+        "args": ["-y", "mcp-git"]
       }
     },
     {
@@ -187,7 +187,7 @@
       "mcp": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-fetch"]
+        "args": ["-y", "mcp-fetch-server"]
       }
     },
     {
@@ -229,7 +229,7 @@
       "mcp": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-time"]
+        "args": ["-y", "time-mcp"]
       }
     },
     {
@@ -324,7 +324,7 @@
       "mcp": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["-y", "@modelcontextprotocol/server-sqlite", "$SQLITE_DB_PATH"]
+        "args": ["-y", "mcp-server-sqlite", "$SQLITE_DB_PATH"]
       }
     },
     {
@@ -380,7 +380,7 @@
       "mcp": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["-y", "supabase-mcp-server"],
+        "args": ["-y", "supabase-mcp"],
         "env": {
           "SUPABASE_URL": "$SUPABASE_URL",
           "SUPABASE_SERVICE_KEY": "$SUPABASE_SERVICE_KEY"
@@ -413,43 +413,10 @@
       "mcp": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["-y", "qdrant-mcp"],
+        "args": ["-y", "qdrant-mcp-server"],
         "env": {
           "QDRANT_URL": "$QDRANT_URL",
           "QDRANT_API_KEY": "$QDRANT_API_KEY"
-        }
-      }
-    },
-    {
-      "id": "chroma",
-      "name": "Chroma",
-      "description": "AI-native embedding database for building RAG applications with semantic search.",
-      "icon": "",
-      "category": "data",
-      "tags": ["vector", "embeddings", "search", "rag"],
-      "credentials": [
-        {
-          "key": "CHROMA_HOST",
-          "label": "Host",
-          "placeholder": "localhost",
-          "helpText": "Hostname of your Chroma server",
-          "required": true
-        },
-        {
-          "key": "CHROMA_PORT",
-          "label": "Port",
-          "placeholder": "8000",
-          "helpText": "Port number for your Chroma server",
-          "required": true
-        }
-      ],
-      "mcp": {
-        "transport": "stdio",
-        "command": "npx",
-        "args": ["-y", "chroma-mcp"],
-        "env": {
-          "CHROMA_HOST": "$CHROMA_HOST",
-          "CHROMA_PORT": "$CHROMA_PORT"
         }
       }
     },
@@ -1344,21 +1311,6 @@
       }
     },
     {
-      "id": "pandoc",
-      "name": "Pandoc",
-      "description": "Convert documents between formats: PDF, HTML, Markdown, DOCX, LaTeX, EPUB.",
-      "icon": "",
-      "category": "productivity",
-      "tags": ["documents", "conversion", "pdf", "markdown"],
-      "credentials": [],
-      "mcp": {
-        "transport": "stdio",
-        "command": "npx",
-        "args": ["-y", "mcp-pandoc"],
-        "env": {}
-      }
-    },
-    {
       "id": "ffmpeg",
       "name": "FFmpeg Media",
       "description": "Edit video and audio files: trim, convert, extract, overlay, and concatenate.",
@@ -1439,7 +1391,7 @@
       "mcp": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["-y", "@anthropic/desktop-commander"],
+        "args": ["-y", "@wonderwhy-er/desktop-commander"],
         "env": {}
       }
     },
@@ -2205,7 +2157,7 @@
       "mcp": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["-y", "mcp-server-bigquery"],
+        "args": ["-y", "bigquery-mcp-server"],
         "env": {
           "BIGQUERY_PROJECT": "$BIGQUERY_PROJECT_ID",
           "BIGQUERY_LOCATION": "$BIGQUERY_LOCATION"
@@ -2537,7 +2489,7 @@
       "mcp": {
         "transport": "stdio",
         "command": "npx",
-        "args": ["-y", "@smithery/cli", "run", "@robertoamoreno/couchdb-mcp-server"],
+        "args": ["-y", "couchdb-mcp"],
         "env": {
           "COUCHDB_URL": "$COUCHDB_URL"
         }
