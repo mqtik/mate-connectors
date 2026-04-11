@@ -2,6 +2,20 @@
   "version": 4,
   "connectors": [
     {
+      "id": "mate-canvas",
+      "name": "Mate Canvas",
+      "description": "Display self-contained HTML/JS/CSS in a sandboxed canvas panel beside the chat.",
+      "icon": "canvas",
+      "category": "builtin",
+      "firstParty": true,
+      "credentials": [],
+      "mcp": {
+        "transport": "stdio",
+        "bundledPath": "mate-canvas/dist/index.js",
+        "alwaysEnabled": true
+      }
+    },
+    {
       "id": "github",
       "name": "GitHub",
       "description": "Manage repositories, track code changes, and collaborate on team projects.",
@@ -2493,73 +2507,6 @@
         "env": {
           "COUCHDB_URL": "$COUCHDB_URL"
         }
-      }
-    }
-    ,
-    {
-      "id": "openai-whisper-api",
-      "name": "OpenAI Whisper",
-      "description": "Speech-to-text transcription using OpenAI's Whisper API.",
-      "icon": "openai.svg",
-      "category": "audio",
-      "tags": ["speech", "transcription", "stt", "whisper", "openai"],
-      "capabilities": ["stt"],
-      "credentials": [
-        {
-          "key": "OPENAI_API_KEY",
-          "label": "API Key",
-          "placeholder": "sk-...",
-          "helpUrl": "https://platform.openai.com/api-keys",
-          "helpText": "Get your API key from the OpenAI dashboard",
-          "required": true
-        }
-      ],
-      "mcp": {
-        "transport": "builtin"
-      }
-    },
-    {
-      "id": "together-ai-stt",
-      "name": "Together AI STT",
-      "description": "Speech-to-text transcription using Together AI's Whisper models.",
-      "icon": "",
-      "category": "audio",
-      "tags": ["speech", "transcription", "stt", "together", "whisper"],
-      "capabilities": ["stt"],
-      "credentials": [
-        {
-          "key": "TOGETHER_API_KEY",
-          "label": "API Key",
-          "placeholder": "tok-...",
-          "helpUrl": "https://api.together.xyz/settings/api-keys",
-          "helpText": "Get your API key from Together AI dashboard",
-          "required": true
-        }
-      ],
-      "mcp": {
-        "transport": "builtin"
-      }
-    },
-    {
-      "id": "elevenlabs-stt",
-      "name": "ElevenLabs STT",
-      "description": "Speech-to-text transcription using ElevenLabs.",
-      "icon": "",
-      "category": "audio",
-      "tags": ["speech", "transcription", "stt", "elevenlabs"],
-      "capabilities": ["stt"],
-      "credentials": [
-        {
-          "key": "ELEVENLABS_API_KEY",
-          "label": "API Key",
-          "placeholder": "el-...",
-          "helpUrl": "https://elevenlabs.io/app/settings/api-keys",
-          "helpText": "Get your API key from ElevenLabs settings",
-          "required": true
-        }
-      ],
-      "mcp": {
-        "transport": "builtin"
       }
     }
   ],
